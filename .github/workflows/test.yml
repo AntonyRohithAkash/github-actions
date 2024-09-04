@@ -10,9 +10,9 @@ jobs:
       - 
         name: Check out repository code
         uses: actions/checkout@v4
-      - 
-        name: Setup Python environment
-        uses: actions/setup-python@v5
+      # - 
+      #   name: Setup Python environment
+      #   uses: actions/setup-python@v5
       - 
         name: Create Release Info
         run: echo "RELEASE_VERSION=$(cat .plugin-version)" >> $GITHUB_ENV
