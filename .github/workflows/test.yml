@@ -18,17 +18,17 @@ jobs:
         run: echo "RELEASE_VERSION=$(cat .plugin-version)" >> $GITHUB_ENV
       -
         name: "Print Version"
-        run: echo ${{ env.RELEASE_VERSION }}
-      - 
-        name: Create Release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: ${{ env.RELEASE_VERSION }}
-          draft: false
-          prerelease: false
+        run: echo $(git ls-remote --tags "$1" | cut -d/ -f3- | tail -n1)
+      # - 
+      #   name: Create Release
+      #   uses: actions/create-release@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ env.RELEASE_VERSION }}
+      #     release_name: ${{ env.RELEASE_VERSION }}
+      #     draft: false
+      #     prerelease: false
       # -
       #   name: Installing Dependencies
       #   run: pip install hatch
