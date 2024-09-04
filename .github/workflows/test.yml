@@ -25,7 +25,7 @@ jobs:
       - 
         name: Update sdk version and create Tag
         run: |
-          git ls-remote --tags
+          echo "OLD_RELEASE=$(git ls-remote --tags | cut -d/ -f3- | cut -d- -f1 | tail -1)" >> $GITHUB_ENV
           git status
       # -
       #   name: Run GoReleaser
