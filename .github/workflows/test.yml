@@ -25,7 +25,7 @@ jobs:
       - 
         name: Update sdk version and create Tag
         run: |
-          git ls-remote
+          git ls-remote --tags
           git status
       # -
       #   name: Run GoReleaser
