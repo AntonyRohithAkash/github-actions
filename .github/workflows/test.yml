@@ -25,8 +25,8 @@ jobs:
       - 
         name: Update sdk version and create Tag
         run: |
-          git tag ${{ env.RELEASE_VERSION }}
-          git push origin ${{ env.RELEASE_VERSION }}
+          git status
+          git status
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
