@@ -16,9 +16,12 @@ jobs:
       - 
         name: Create Release Info
         run: echo "RELEASE_VERSION=$(cat .plugin-version)" >> $GITHUB_ENV
+      - 
+        name: Get OLD Release Info
+        run: echo "OLD_RELEASE=$(/usr/bin/git ls-remote --tags "$1" | cut -d/ -f3- | tail -n1)" >> $GITHUB_ENV
       -
         name: "Print Version"
-        run: echo $(/usr/bin/git ls-remote --tags "$1" | cut -d/ -f3- | tail -n1)
+        run: echo ${{ env.OLD_RELEASE }}
 
       # - 
       #   name: Create Release
