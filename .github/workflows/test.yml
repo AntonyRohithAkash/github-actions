@@ -22,6 +22,11 @@ jobs:
       -
         name: "Print Version"
         run: echo ${{ env.OLD_RELEASE }}
+      - 
+        name: Update sdk version and create Tag
+        run: |
+          git tag ${{ env.RELEASE_VERSION }}
+          git push origin ${{ env.RELEASE_VERSION }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
