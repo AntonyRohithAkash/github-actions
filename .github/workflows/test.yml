@@ -18,8 +18,8 @@ jobs:
         run: echo "RELEASE_VERSION=$(cat .plugin-version)" >> $GITHUB_ENV
       -
         name: "Print Version"
-        run: echo $(git ls-remote --tags "$1" | cut -d/ -f3- | tail -n1)
-        
+        run: echo $(/usr/bin/git ls-remote --tags "$1" | cut -d/ -f3- | tail -n1)
+
       # - 
       #   name: Create Release
       #   uses: actions/create-release@v2
