@@ -2,7 +2,7 @@ name: PR Verification
 on: 
   pull_request:
     branches:
-      - master
+      - new_branch
 jobs:
   Verification:
     runs-on: ubuntu-latest
@@ -10,4 +10,4 @@ jobs:
     steps:
       -
         name: "Test"
-        run: echo "RELEASE_VERSION
+        run: echo "RELEASE_VERSION"
