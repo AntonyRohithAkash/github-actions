@@ -20,7 +20,7 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
       - 
         name: Create Release Info
-        run: echo "RELEASE_VERSION=3.0.0" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=3.1.0" >> $GITHUB_ENV
       - 
         name: Setup git config for creating Tag
         run: |
@@ -32,6 +32,13 @@ jobs:
           git tag ${{ env.RELEASE_VERSION }}
           git push origin ${{ env.RELEASE_VERSION }}
       -
+        name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: "Test"
+          passphrase: "Test"
+      -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
@@ -39,5 +46,5 @@ jobs:
           version: "~> v2"
           args: release --clean
         env:
-          # GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
