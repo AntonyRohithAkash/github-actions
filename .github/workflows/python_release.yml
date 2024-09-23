@@ -1,0 +1,31 @@
+name: Release_Workflow
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  Release_Job:
+    runs-on: ubuntu-latest
+    needs: Code_Analysis_Job
+    environment: test
+    steps:
+      - 
+        name: Check out repository code
+        uses: actions/checkout@v4
+      - 
+        name: Setup Python environment
+        uses: actions/setup-python@v5
+      - 
+        name: Create Release Info
+        run: echo "RELEASE_VERSION=2.2.0" >> $GITHUB_ENV
+      -
+        name: Installing Dependencies
+        run: |
+          pip install requests
+          pip install hatch
+      - 
+        name: Versioning the build
+        run: hatch version ${{ env.RELEASE_VERSION }}
+      - 
+        name: Creating python Package
+        run: hatch build
