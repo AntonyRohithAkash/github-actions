@@ -20,7 +20,7 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
       - 
         name: Create Release Info
-        run: echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=3.0.0" >> $GITHUB_ENV
       - 
         name: Setup git config for creating Tag
         run: |
