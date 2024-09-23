@@ -6,6 +6,7 @@ on:
 jobs:
   Release_Job:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - 
         name: Check out repository code
@@ -36,8 +37,8 @@ jobs:
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
         with:
-          gpg_private_key: "Test"
-          passphrase: "Test"
+          gpg_private_key: ${{ secrets.KEY }}
+          passphrase: "testing"
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
