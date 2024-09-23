@@ -4,6 +4,19 @@ on:
     branches:
       - main
 jobs:
+  Fork_PR_Modification:
+    if: github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Check out repository code
+        uses: actions/checkout@v4
+      -
+        run: gh pr comment ${{ github.event.pull_request.number }} --body "Hi from GitHub CLI"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.html_url }}
+
   Verification:
     if: ${{ ! github.event.pull_request.head.repo.fork }}
     runs-on: ubuntu-latest
